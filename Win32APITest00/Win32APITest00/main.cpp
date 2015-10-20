@@ -8,6 +8,19 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	ATOM mainWindowClass = RegisterClassExW(&mainWindow);
 	HWND hMainWindow = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW, (LPCWSTR)mainWindowClass, L"Window", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);
 	ShowWindow(hMainWindow, nCmdShow);
+	MSG msg;
+	BOOL bRet;
+	while ((bRet = GetMessageW(&msg, hMainWindow, 0, 0)) != 0)
+	{
+		if (bRet == -1)
+		{
+			break;
+		}
+		else
+		{
+			DispatchMessageW(&msg);
+		}
+	}
 }
 
 LRESULT CALLBACK mainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
