@@ -2,7 +2,7 @@
 
 LRESULT CALLBACK mainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int CALLBACK wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
 	WNDCLASSEXW mainWindow = { sizeof(WNDCLASSEXW) , CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW , DefWindowProcW , 0 , 0 , hInstance , LoadIconW(hInstance, IDI_APPLICATION) , LoadCursorW(hInstance, IDC_ARROW) , (HBRUSH)(COLOR_WINDOW + 1) , NULL , L"mainWindow" , NULL };
 	ATOM mainWindowClass = RegisterClassExW(&mainWindow);
@@ -21,6 +21,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			DispatchMessageW(&msg);
 		}
 	}
+	return msg.wParam;
 }
 
 LRESULT CALLBACK mainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
